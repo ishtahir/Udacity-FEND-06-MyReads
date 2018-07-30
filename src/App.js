@@ -1,9 +1,9 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
-import { Route, Link } from 'react-router-dom'
-import Search from './Search.js'
-import Bookshelf from './Bookshelf.js'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+import { Route, Link } from 'react-router-dom';
+import Search from './Search.js';
+import Bookshelf from './Bookshelf.js';
 
 
 class BooksApp extends React.Component {
@@ -38,4 +38,4 @@ class BooksApp extends React.Component {
     }
 }
 
-export default BooksApp
+export default BooksApp;

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import ShelfChanger from './ShelfChanger'
+import React, { Component } from 'react';
+import ShelfChanger from './ShelfChanger';
 
 class Bookshelf extends Component {
     render() {
@@ -103,4 +103,4 @@ class Bookshelf extends Component {
     }
 }
 
-export default Bookshelf
+export default Bookshelf;

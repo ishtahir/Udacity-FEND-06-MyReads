@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 
 class Search extends Component {
     render() {
@@ -26,4 +26,4 @@ class Search extends Component {
     }
 }
 
-export default Search
+export default Search;

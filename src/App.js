@@ -8,18 +8,31 @@ import Bookshelf from './components/Bookshelf.js';
 
 class BooksApp extends Component {
     state = {
-        books: []
+        books: [],
+        shelves: {
+            currentlyReading: {
+                name: 'Currently Reading',
+                id: 'current',
+                books: []
+            },
+            wantToRead: {
+                name: 'Want to Read',
+                id: 'want',
+                books: []
+            },
+            read: {
+                name: 'Read',
+                id: 'read',
+                books: []
+            }
+        }
     }
 
     componentDidMount() {
-        this.fetchBooks();
-    }
-
-    fetchBooks() {
         BooksAPI.getAll().then(books => {
             this.setState({ books });
         });
-
+        console.log(this)
     }
 
     render() {

@@ -1,8 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../BooksAPI';
+import Book from './Book.js';
 
 class Search extends Component {
+    state = {
+        query: []
+    }
+
+    searchBooks = (query) => {
+        if (query === '') {
+            this.setState({ booksQuery: [] });
+
+            return;
+        }
+
+        BooksAPI.search(query).then((books) => {
+
+            this.updateBookSearchState(books);
+
+            //if call returns empty/error set booksQuery prop to empty
+            if (books !== undefined && books.error !== "empty query") {
+                this.setState({
+                    query: books
+                });
+            } else {
+                this.setState({
+                    query: []
+                });
+            }
+        })
+    }
+
     render() {
         return (
             <div className="search-books">

@@ -11,13 +11,12 @@ class BooksApp extends Component {
         * users can use the browser's back and forward buttons to navigate between
         * pages, as well as provide a good URL they can bookmark and share.
         */
-        showSearchPage: false
     }
 
     render() {
         return (
             <div className="app">
-                <Route exact path='/' render={() => (
+                <Route exact path="/" render={() => (
                     <div className="list-books">
                       <div className="list-books-title">
                         <h1>MyReads</h1>
@@ -174,7 +173,7 @@ class BooksApp extends Component {
                         </div>
                       </div>
                       <div className="open-search">
-                        <Link to='/search'>Add a book</Link>
+                        <Link to="/search">Add a book</Link>
                       </div>
                     </div>)}
                 />

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 
 class Book extends Component {
+    changeShelf = event => {
+        this.props.changeShelf(this.props.books, event.target.value);
+    }
+
     render() {
-        // console.log('Book.props', this.props);
-        const imgUrl = this.props.books.imageLinks ? `url(${this.props.books.imageLinks.thumbnail})` : 'url("")';
+        const imgUrl = this.props.books.imageLinks ? `url(${this.props.books.imageLinks.thumbnail})` : 'url("http://via.placeholder.com/200x13")';
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `${imgUrl}` }}></div>
                     <div className="book-shelf-changer">
-                        <select>
+                        <select onChange={this.changeShelf} value={this.props.books.shelf}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>

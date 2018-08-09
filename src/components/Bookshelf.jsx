@@ -15,29 +15,26 @@ class Bookshelf extends Component {
 
     getBooks() {
         BooksAPI.getAll().then(books => {
-            books.forEach(book => {
-                book.shelf === 'currentlyReading' ? this.state.currentlyReading.push(book) : null;
-                book.shelf === 'wantToRead' ? this.state.wantToRead.push(book) : null;
-                book.shelf === 'read' ? this.state.read.push(book) : null;
-            })
+            let currentlyReading = books ? books.filter(book => book.shelf === 'currentlyReading') : null;
+            let wantToRead = books ? books.filter(book => book.shelf === 'wantToRead') : null;
+            let read = books ? books.filter(book => book.shelf === 'read') : null;
+
+            this.setState({ currentlyReading, wantToRead, read });
         });
-        console.log('currently', this.state.currentlyReading);
-        console.log('want to', this.state.wantToRead);
-        console.log('read', this.state.read);
     }
 
     changeShelf(book, shelf) {
-        BooksAPI.update(book, shelf).then(() => this.getbooks());
+        BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
 
-    renderShelf(title, books) {
+    displayShelf(title, books) {
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {books.map((book, index) => {
-                            return (<Book books={book} key={index} change={this.changeShelf} />)
+                        {books.map((book) => {
+                            return (<Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} />)
                         })}
                     </ol>
                 </div>
@@ -48,11 +45,9 @@ class Bookshelf extends Component {
     render() {
         return (
             <div className="list-books-content">
-                <div>
-                    {this.renderShelf('Currently Reading', this.state.currentlyReading)}
-                    {this.renderShelf('Want to Read', this.state.wantToRead)}
-                    {this.renderShelf('Read', this.state.read)}
-                </div>
+                {this.displayShelf('Currently Reading', this.state.currentlyReading)}
+                {this.displayShelf('Want to Read', this.state.wantToRead)}
+                {this.displayShelf('Read', this.state.read)}
             </div>
         )
     }

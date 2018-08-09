@@ -7,12 +7,13 @@ class Book extends Component {
 
     render() {
         const imgUrl = this.props.books.imageLinks ? `url(${this.props.books.imageLinks.thumbnail})` : 'url("http://via.placeholder.com/200x13")';
+        const author = this.props.books.authors? this.props.books.authors[0] : 'N/A';
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `${imgUrl}` }}></div>
                     <div className="book-shelf-changer">
-                        <select onChange={this.changeShelf} value={this.props.books.shelf}>
+                        <select onChange={this.changeShelf} value={this.props.books.shelf ? this.props.books.shelf : 'move'}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -22,7 +23,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{this.props.books.title}</div>
-                <div className="book-authors">{this.props.books.authors[0]}</div>
+                <div className="book-authors">{author}</div>
             </div>
         )
     }

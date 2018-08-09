@@ -28,9 +28,11 @@ class BooksApp extends Component {
                       <div className="open-search">
                         <Link to="/search">Add a book</Link>
                       </div>
-                    </div>)}
-                />
-                <Route path='/search' component={Search} />
+                    </div>
+                )}/>
+                <Route path='/search' render={() => (
+                    <Search books={this.state.books} />
+                )}/>
             </div>
         )
     }

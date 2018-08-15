@@ -24,16 +24,17 @@ class Search extends Component {
 
     handleSearch(query) {
         this.setState({ query });
+        this.setState({sameBook: ''});
         this.searchLibrary(query);
     }
 
     searchLibrary(query) {
         BooksAPI.search(query).then(results => this.setState({ results }));
-        // console.log(this.checkID(this.props.books, this.state.results))
+        this.checkID(this.props.books, this.state.results);
     }
 
     changeShelf(book, shelf) {
-        BooksAPI.update(book, shelf).then(() => shelf !== 'none' ? alert('Books is now added to your library') : null).catch(alert('Something is not right.'))
+        BooksAPI.update(book, shelf).then(() => shelf !== 'none' ? console.log('Book has been added') : null)
     }
 
     checkID(books, searched) {
@@ -53,33 +54,30 @@ class Search extends Component {
         }
 
         const shelf = this.props.books.filter(book => book.id === same);
-        console.log(shelf)
 
         if (this.state.results && this.state.results.length > 0) {
-            this.state.results.forEach(book => {
-                if (book.id === same) {
-                    book.shelf = shelf[0].shelf;
-                    console.log(this.state.results)
+            this.state.results.forEach(sameBook => {
+                if (sameBook.id === same) {
+                    sameBook.shelf = shelf[0].shelf;
+                    this.setState({sameBook: sameBook})
                 }
             });
         }
-
-        // return same;
     }
 
     render() {
+        const {results, query, sameBook} = this.state;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link className="close-search" to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author" onChange={event => this.handleSearch(event.target.value)} value={this.state.query}/>
+                        <input type="text" placeholder="Search by title or author" onChange={event => this.handleSearch(event.target.value)} value={query}/>
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {/* {console.log(this.state.results[0])} */}
-                        {(this.state.results) && (this.state.results.length > 0) ? Array.from(this.state.results).map((book, index) => <li key={index}><Book books={book} changeShelf={this.changeShelf} /></li>) : null}
+                        {(results) && (results.length > 0) ? results.map((book, index) => <li key={index}><Book books={book} key={book.id} changeShelf={this.changeShelf} sameBook={sameBook} /></li>) : null}
                     </ol>
                 </div>
             </div>

@@ -43,11 +43,12 @@ class Bookshelf extends Component {
     }
 
     render() {
+        const {currentlyReading, wantToRead, read} = this.state;
         return (
             <div className="list-books-content">
-                {this.displayShelf('Currently Reading', this.state.currentlyReading)}
-                {this.displayShelf('Want to Read', this.state.wantToRead)}
-                {this.displayShelf('Read', this.state.read)}
+                {this.displayShelf('Currently Reading', currentlyReading)}
+                {this.displayShelf('Want to Read', wantToRead)}
+                {this.displayShelf('Read', read)}
             </div>
         )
     }

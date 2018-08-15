@@ -23,7 +23,7 @@ class BooksApp extends Component {
                 <Route exact path="/" render={() => (
                     <div className="list-books">
                       <div className="list-books-title">
-                        <h1>MyReads</h1>
+                        <h1>MyReads Library</h1>
                       </div>
                       <Bookshelf books={books} />
                       <div className="open-search">

@@ -1,6 +1,6 @@
 # MyReads Library
 ---
-This site provides you with your own personal boofshelf with 3 shelves, currently reading, want to read, and read. You can also search for books to add to any shelf.
+This site provides you with your own personal bookshelf with 3 shelves, currently reading, want to read, and read. You can also search for books to add to any shelf.
 
 ## Start Reading
 Download the zip file into your favorite directory.

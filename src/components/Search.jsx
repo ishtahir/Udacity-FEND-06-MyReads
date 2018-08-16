@@ -24,7 +24,6 @@ class Search extends Component {
 
     handleSearch(query) {
         this.setState({ query });
-        this.setState({sameBook: ''});
         this.searchLibrary(query);
     }
 
@@ -34,18 +33,20 @@ class Search extends Component {
     }
 
     changeShelf(book, shelf) {
-        BooksAPI.update(book, shelf).then(() => shelf !== 'none' ? console.log('Book has been added') : null)
+        BooksAPI.update(book, shelf).then(() => {
+            BooksAPI.getAll().then(books => book.shelf = books.find(book1 => book1.id === book.id).shelf);
+        });
     }
 
     checkID(books, searched) {
         let same;
         const bookID = [];
+        const searchedID = [];
         books.forEach(book => {
             bookID.push(book.id);
         });
 
         if (searched && searched.length > 0) {
-            const searchedID = [];
             searched.forEach(search => {
                 searchedID.push(search.id);
             });
@@ -59,7 +60,7 @@ class Search extends Component {
             this.state.results.forEach(sameBook => {
                 if (sameBook.id === same) {
                     sameBook.shelf = shelf[0].shelf;
-                    this.setState({sameBook: sameBook})
+                    console.log(sameBook)
                 }
             });
         }
@@ -77,7 +78,7 @@ class Search extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {(results) && (results.length > 0) ? results.map((book, index) => <li key={index}><Book books={book} key={book.id} changeShelf={this.changeShelf} sameBook={sameBook} /></li>) : null}
+                        {(results) && (results.length > 0) ? results.map((book, index) => <li key={index}><Book books={book} key={book.id} changeShelf={this.changeShelf} /></li>) : null}
                     </ol>
                 </div>
             </div>

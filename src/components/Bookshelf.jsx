@@ -15,9 +15,9 @@ class Bookshelf extends Component {
 
     getBooks() {
         BooksAPI.getAll().then(books => {
-            let currentlyReading = books ? books.filter(book => book.shelf === 'currentlyReading') : null;
-            let wantToRead = books ? books.filter(book => book.shelf === 'wantToRead') : null;
-            let read = books ? books.filter(book => book.shelf === 'read') : null;
+            let currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
+            let wantToRead = books.filter(book => book.shelf === 'wantToRead');
+            let read = books.filter(book => book.shelf === 'read');
 
             this.setState({ currentlyReading, wantToRead, read });
         });

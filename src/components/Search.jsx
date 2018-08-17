@@ -28,7 +28,17 @@ class Search extends Component {
     }
 
     searchLibrary(query) {
-        BooksAPI.search(query).then(results => this.setState({ results }));
+        if (query) {
+            BooksAPI.search(query).then(results => {
+                if (results.error) {
+                    this.setState({ results: [] });
+                } else {
+                    this.setState({ results });
+                }
+            });
+        } else {
+            this.setState({ results: [] });
+        }
         this.checkID(this.props.books, this.state.results);
     }
 
@@ -78,7 +88,7 @@ class Search extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {(results) && (results.length > 0) ? results.map((book, index) => <li key={index}><Book books={book} key={book.id} changeShelf={this.changeShelf} /></li>) : null}
+                        {results.map((book, index) => <li key={index}><Book books={book} key={book.id} changeShelf={this.changeShelf} /></li>)}
                     </ol>
                 </div>
             </div>

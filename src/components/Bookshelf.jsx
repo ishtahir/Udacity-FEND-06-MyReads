@@ -27,14 +27,14 @@ class Bookshelf extends Component {
         BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
 
-    displayShelf(title, books) {
+    displayShelf(title, books, currentShelf) {
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map((book) => {
-                            return (<Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} />)
+                            return (<Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} currentShelf={currentShelf} />)
                         })}
                     </ol>
                 </div>
@@ -46,9 +46,9 @@ class Bookshelf extends Component {
         const {currentlyReading, wantToRead, read} = this.state;
         return (
             <div className="list-books-content">
-                {this.displayShelf('Currently Reading', currentlyReading)}
-                {this.displayShelf('Want to Read', wantToRead)}
-                {this.displayShelf('Read', read)}
+                {this.displayShelf('Currently Reading', currentlyReading, 'currentlyReading')}
+                {this.displayShelf('Want to Read', wantToRead, 'wantToRead')}
+                {this.displayShelf('Read', read, 'read')}
             </div>
         )
     }

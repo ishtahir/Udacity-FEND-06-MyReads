@@ -16,6 +16,10 @@ class BooksApp extends Component {
         });
     }
 
+    changeShelf(book, shelf) {
+        BooksAPI.update(book, shelf).then(() => this.componentDidMount());
+    }
+
     render() {
         const {books} = this.state;
         return (
@@ -25,14 +29,14 @@ class BooksApp extends Component {
                       <div className="list-books-title">
                         <h1>MyReads</h1>
                       </div>
-                      <Bookshelf books={books} />
+                      <Bookshelf books={books} changeShelf={this.changeShelf.bind(this)} />
                       <div className="open-search">
                         <Link to="/search">Add a book</Link>
                       </div>
                     </div>
                 )}/>
                 <Route path='/search' render={() => (
-                    <Search books={books} />
+                    <Search books={books} changeShelf={this.changeShelf.bind(this)} />
                 )}/>
             </div>
         )

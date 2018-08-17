@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
     render() {
         const {books} = this.props;
-        const {shelf, title} = books;
+        const {title} = books;
         const imgUrl = books.imageLinks ? `url(${books.imageLinks.thumbnail})` : 'url("http://via.placeholder.com/200x13")';
         const author = books.authors? books.authors[0] : 'N/A';
         return (

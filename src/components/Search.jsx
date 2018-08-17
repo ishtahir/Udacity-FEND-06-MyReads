@@ -32,7 +32,7 @@ class Search extends Component {
     }
 
     render() {
-        const {results, query, sameBook} = this.state;
+        const {results, query} = this.state;
         return (
             <div className="search-books">
                 <div className="search-books-bar">

@@ -8,7 +8,8 @@ Download the zip file into your favorite directory.
 ## Instructions
 1. Open a terminal window
 2. `cd` into the directory of the zip file
-3. Input `npm start` into terminal
-4. The program should automatically open on `localhost:3000` in the browser, if not type in `localhost:3000` in the browser
+3. Input `npm install` into terminal
+4. Input `npm start` into terminal
+5. The program should automatically open on `localhost:3000` in the browser, if not type in `localhost:3000` in the browser
 
 ### Enjoy

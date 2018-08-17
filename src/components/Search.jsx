@@ -4,16 +4,19 @@ import * as BooksAPI from '../BooksAPI';
 import Book from './Book.jsx';
 
 class Search extends Component {
+    // the search results and search query is stored in the state
     state = {
         results: [],
         query: ''
     }
 
+    // sets the query in the state and runs the searchLibrary function
     handleSearch(query) {
         this.setState({ query });
         this.searchLibrary(query);
     }
 
+    // searches the library based on the query with error handling
     searchLibrary(query) {
         if (query) {
             BooksAPI.search(query).then(results => {

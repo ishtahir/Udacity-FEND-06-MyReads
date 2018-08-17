@@ -3,16 +3,19 @@ import * as BooksAPI from '../BooksAPI';
 import Book from './Book.jsx';
 
 class Bookshelf extends Component {
+    // each book is stored based on its shelf in the state
     state = {
         currentlyReading: [],
         wantToRead: [],
         read: []
     }
 
+    // when component mounts, run the getBooks funtion
     componentDidMount() {
         this.getBooks();
     }
 
+    // filter the books by shelf and set the state accordingly
     getBooks() {
         BooksAPI.getAll().then(books => {
             let currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
@@ -23,10 +26,12 @@ class Bookshelf extends Component {
         });
     }
 
+    // function to change shelves for the books, then runs getBooks function to set state
     changeShelf(book, shelf) {
         BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
 
+    // displays the shelf with its title and each book has the current shelf
     displayShelf(title, books, currentShelf) {
         return (
             <div className="bookshelf">

@@ -6,16 +6,19 @@ import Bookshelf from './components/Bookshelf.jsx';
 import './App.css';
 
 class BooksApp extends Component {
+    // state to hold all the books in the bookshelf
     state = {
         books: []
     }
 
+    // after component mounts, gets all books then puts it in the state
     componentDidMount() {
         BooksAPI.getAll().then(books => {
             this.setState({books});
         });
     }
 
+    // function to change shelves for the books, then it runs componentDidMount function to set state
     changeShelf(book, shelf) {
         BooksAPI.update(book, shelf).then(() => this.componentDidMount());
     }

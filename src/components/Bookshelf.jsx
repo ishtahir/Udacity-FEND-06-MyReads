@@ -38,9 +38,9 @@ class Bookshelf extends Component {
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {books.map((book) => {
-                            return (<Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} currentShelf={currentShelf} />)
-                        })}
+                        {books.map((book) => (
+                            <Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} currentShelf={currentShelf} />
+                        ))}
                     </ol>
                 </div>
             </div>

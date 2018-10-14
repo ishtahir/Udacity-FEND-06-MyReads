@@ -19,7 +19,7 @@ class BooksApp extends Component {
     }
 
     // function to change shelves for the books, then it runs componentDidMount function to set state
-    changeShelf(book, shelf) {
+    changeShelf = (book, shelf) => {
         BooksAPI.update(book, shelf).then(() => this.componentDidMount());
     }
 
@@ -32,14 +32,14 @@ class BooksApp extends Component {
                       <div className="list-books-title">
                         <h1>MyReads</h1>
                       </div>
-                      <Bookshelf books={books} changeShelf={this.changeShelf.bind(this)} />
+                      <Bookshelf books={books} changeShelf={this.changeShelf} />
                       <div className="open-search">
                         <Link to="/search">Add a book</Link>
                       </div>
                     </div>
                 )}/>
                 <Route path='/search' render={() => (
-                    <Search books={books} changeShelf={this.changeShelf.bind(this)} />
+                    <Search books={books} changeShelf={this.changeShelf} />
                 )}/>
             </div>
         )

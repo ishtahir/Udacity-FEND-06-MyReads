@@ -27,7 +27,7 @@ class Bookshelf extends Component {
     }
 
     // function to change shelves for the books, then runs getBooks function to set state
-    changeShelf(book, shelf) {
+    changeShelf = (book, shelf) => {
         BooksAPI.update(book, shelf).then(() => this.getBooks());
     }
 
@@ -39,7 +39,7 @@ class Bookshelf extends Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map((book) => (
-                            <Book books={book} key={book.id} changeShelf={this.changeShelf.bind(this)} currentShelf={currentShelf} />
+                            <Book books={book} key={book.id} changeShelf={this.changeShelf} currentShelf={currentShelf} />
                         ))}
                     </ol>
                 </div>
